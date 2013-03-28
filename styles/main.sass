@@ -1,0 +1,61 @@
+@import dropzone.sass
+
+body
+  background: #F1F1F1
+
+form
+  margin: 0
+.center
+  text-align: center
+
+
+.input-add-item-list
+  border-bottom: 1px solid #EEE !important
+
+.input-title
+  font-weight: bold
+
+.box_textarea
+  background: #FFF
+  border: 1px solid #CACACA
+  box-shadow: 0px 0px 5px #CACACA
+  padding: 10px
+  input[type=text],
+  textarea
+    border: 0
+    box-shadow: 0px 0px 0px
+    &:focus
+      outline: none
+
+.list-notes
+  margin: 0
+  padding: 0
+  i.date
+    color: #C9C9C9
+    font-size: 12px
+  li.top
+    list-style: none
+    background: #FFF
+    box-shadow: 0px 0px 5px #CACACA
+    border-top: 3px solid #FFBC00
+    padding: 10px
+    margin-bottom: 30px
+    ul
+      margin: 0
+      padding: 0
+      li.children
+        list-style: none
+        margin-bottom: 10px
+
+.done-true
+  text-decoration: line-through
+  color: grey
+
+.picture
+  display: none
+  img
+    display: none
+  &.type-picture
+    display: block
+    img
+      display: block
