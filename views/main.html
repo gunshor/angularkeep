@@ -1,0 +1,92 @@
+<div class="row-fluid">
+  <div class="span12 center">
+    <h1>Angular Keep</h1>
+  </div>
+</div>
+<hr>
+
+<div class="row-fluid">
+  <div class="span11">
+    <div class="box_textarea">
+      
+      <!-- New note form -->
+      <form ng-submit="save()">
+        <div class="note" ng-hide="showTodo">
+          <h3><i class="icon-book"></i> Create new note</h3>
+          <input type="text" ng-model="note.title" placeholder="Title.." class="span12 input-title">
+          <textarea name="" placeholder="Type note..." ng-model="note.text" class="span12" id="" cols="30" rows="3"></textarea>
+          <button class="btn btn-primary">Done</button>
+        </div>
+      </form>
+      
+      <!-- New list form -->
+      <div class="list" ng-show="showTodo">
+        <h3><i class="icon-check"></i> Create new list</h3>
+        <input type="text" ng-model="note.title" placeholder="Title.." class="span12 input-title">
+        <form ng-submit="saveTodo()">
+          <input type="text" ng-model="todo.text" placeholder="Add a item in list..."  class="span12 input-add-item-list"/>
+          <input type="hidden" ng-model="todo.done" value="false">
+        </form>
+        <ul class="unstyled">
+          <li ng-repeat="todo in todos">
+            <input type="checkbox" ng-model="todo.done">
+            <span class="done-{{todo.done}}" ng-click="">{{todo.text}}</span>
+          </li>
+        </ul>
+        <button class="btn btn-primary" ng-click="save()">Done</button>
+      </div>
+            
+    </div>
+  </div>
+  <div class="span1">
+    <button class="btn btn-primary" ng-click="showTodo=!showTodo">
+      <i class="icon-tasks"></i>
+    </button>
+  </div>
+</div>
+
+<!-- File upload -->
+<form action="/file-upload" class="dropzone" ng-show="showPicture">
+  <div class="fallback">
+    <input name="file" type="file" multiple />
+  </div>
+</form>
+
+<hr>
+
+<div class="row-fluid">
+  <div class="span12">
+    <input type="text" ng-model="search" class="search-query span12" placeholder="Search for notes">
+  </div>
+</div>
+<hr>
+
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="list-notes">
+      <li ng-repeat="note in notes | filter:search | orderBy:'id'" class="top">
+        <!-- Destroy note -->
+        <button ng-click="destroy($index)" class="btn btn-danger pull-right btn-small">
+          <i class="icon-trash"></i>
+        </button>
+        <strong>{{note.title}}</strong>
+        <p>{{note.text}}</p>
+
+        <ul>
+          <li ng-repeat="option in note.options" class="children">
+            <input type="checkbox" ng-model="option.done">
+            <span class="done-{{option.done}}" ng-click="">{{option.text}}</span>
+          </li>
+        </ul>
+
+
+        <div class="picture type-{{note.type}}">
+          <img ng-src="{{note.picture}}" alt="">
+        </div>
+
+        <i class="date">{{note.date}}</i>
+        
+      </li>
+    </ul>
+  </div>
+</div>
